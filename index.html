@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust Communities Map</title>
+    <link href="https://unpkg.com/maplibre-gl@^5.1.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ferris Logo in the upper-left corner -->
+    <div id="ferris-logo">
+        <a href="https://www.rust-lang.org/" target="_blank">
+            <img src="ferris-crab.png" alt="Ferris Logo">
+        </a>
+    </div>
+
+    <div id="map-container">
+        <div id="map"></div>
+        <div id="sidebar">
+            <h2>Community Information</h2>
+            <div id="community-list">
+                <!-- List of community names dynamically added -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/maplibre-gl@^5.1.0/dist/maplibre-gl.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
