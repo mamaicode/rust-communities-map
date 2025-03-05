@@ -63,15 +63,6 @@ const communities = [
         continent: "South America"
     },
     {
-        name: "Rust Montréal",
-        description: "This group is to gather Rust language enthusiasts in Montréal to come together, share tips and talk about what's going on in the ecosystem. Whether you're Rust-curious, or professionally write Rust, or somewhere in between, come by!",
-        image: "https://via.placeholder.com/150",
-        link: "https://www.meetup.com/rust-montreal/",
-        coordinates: [-73.5673, 45.5017],
-        country: "Canada",
-        continent: "North America"
-    },
-    {
         name: "Ottawa Rust Language Meetup",
         description: "We are interested in the powerful and safe language Rust. We will occasionally meet to share knowledge and ideas, discuss and learn Rust, and contribute to projects. People of all skill level are welcome, even if you are just curious about the language!",
         image: "https://via.placeholder.com/150",
@@ -114,15 +105,6 @@ const communities = [
         link: "https://www.meetup.com/copenhagen-rust-community/",
         coordinates: [12.5683, 55.6761],
         country: "Denmark",
-        continent: "Europe"
-    },
-    {
-        name: "Rust Lille",
-        description: "Rust Lille est un groupe de développeurs et développeuses ayant pour but d'animer la communauté Rust autour de Lille.",
-        image: "https://via.placeholder.com/150",
-        link: "https://www.meetup.com/meetup-group-zgphbyet/",
-        coordinates: [3.0573, 50.6292],
-        country: "France",
         continent: "Europe"
     },
     {
@@ -1054,26 +1036,48 @@ function createMarkerElement(iconUrl) {
     return element;
 }
 
-// Function to update the sidebar with community details
-function updateSidebar(community, communityItem = null) {
+
+function updateSidebar(community, communityItem) {
+    // Remove any existing community details before adding new ones
     document.querySelectorAll(".community-details").forEach(el => el.remove());
 
+    // Store original community name to restore later
+    const originalText = communityItem.textContent;
+    communityItem.textContent = ""; // Remove text but keep it clickable
+
+    // Create a new details container
     const detailsDiv = document.createElement("div");
     detailsDiv.classList.add("community-details");
 
+    // Ensure only "Visit Website" is a link
     detailsDiv.innerHTML = `
-        <img src="${community.image}" alt="${community.name}" class="community-img">
-        <p class="community-name">${community.name}</p>
-        <p class="community-description">${community.description}</p>
-        <a class="community-link" href="${community.link}" target="_blank">Visit Website</a>
+        <div class="community-box">
+            <h3 class="community-title">${community.name}</h3>
+            <p class="community-description">${community.description}</p>
+            <a class="community-link" href="${community.link}" target="_blank">Visit Website</a>
+        </div>
     `;
 
-    if (communityItem) {
-        communityItem.after(detailsDiv);
-    } else {
-        document.getElementById("community-list").appendChild(detailsDiv);
+    // Insert the details **in place of the clicked item**
+    communityItem.appendChild(detailsDiv);
+
+    // Restore the community name when clicking outside
+    function hideDetails(event) {
+        if (!detailsDiv.contains(event.target)) {
+            detailsDiv.remove(); // Remove the details box
+            communityItem.textContent = originalText; // Restore the sidebar name
+            document.removeEventListener("click", hideDetails); // Clean up event listener
+        }
     }
+
+    // Add event listener to close details when clicking outside
+    setTimeout(() => {
+        document.addEventListener("click", hideDetails);
+    }, 100); // Delay to prevent immediate closing when clicking the item
 }
+
+
+
 
 function addCommunityToSidebar(community) {
     const sidebar = document.getElementById("community-list");
@@ -1089,7 +1093,13 @@ function addCommunityToSidebar(community) {
         sidebar.appendChild(continentSection);
     }
 
-    // Create the community item
+    // Check if this city already exists in the sidebar to prevent duplicate names
+    if (document.querySelector(`[data-name="${community.name}"]`)) {
+        console.error(`Duplicate entry detected in sidebar: ${community.name}. Skipping.`);
+        return;
+    }
+
+    // Create the community item (ONLY the name, no description)
     const communityItem = document.createElement("p");
     communityItem.classList.add("community-item");
     communityItem.textContent = community.name;
@@ -1101,4 +1111,3 @@ function addCommunityToSidebar(community) {
 
     continentSection.appendChild(communityItem);
 }
- 
