@@ -91,6 +91,73 @@ const bounds = new maplibregl.LngLatBounds();
 
 const ferrisIconUrl = 'ferris-crab.png';
 
+// Function to calculate distance using the Haversine formula
+function getDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of Earth in km
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a = 
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in km
+}
+
+// Function to find the closest community
+function findClosestCommunity(userLat, userLng) {
+    let closestCommunity = null;
+    let minDistance = Infinity;
+
+    communities.forEach(community => {
+        const [lng, lat] = community.coordinates;
+        const distance = getDistance(userLat, userLng, lat, lng);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestCommunity = community;
+        }
+    });
+
+    return closestCommunity;
+}
+
+// Get user's location, zoom into the closest Rust community, and show a popup
+if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(position => {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
+
+        console.log(`User's location: ${userLat}, ${userLng}`);
+
+        const closestCommunity = findClosestCommunity(userLat, userLng);
+
+        if (closestCommunity) {
+            const [lng, lat] = closestCommunity.coordinates;
+
+            console.log(`Closest Rust Community: ${closestCommunity.name}`);
+
+            // Move the map to the closest Rust community
+            map.flyTo({
+                center: [lng, lat],
+                zoom: 10, // Zoom level for a close-up view
+                speed: 1.5, // Smooth transition speed
+                curve: 1.2 // Smoother zooming effect
+            });
+
+            // Show a popup on the closest community
+            new maplibregl.Popup({ offset: 15, closeOnClick: false })
+                .setLngLat([lng, lat])
+                .setHTML(`<strong>Closest Rust Community:</strong> <br> ${closestCommunity.name}`)
+                .addTo(map);
+        }
+    }, error => {
+        console.error("Geolocation error:", error);
+    });
+} else {
+    console.error("Geolocation is not supported by this browser.");
+}
+
 communities.forEach(community => {
     const [lng, lat] = community.coordinates;
 
