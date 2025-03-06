@@ -4,7 +4,7 @@ This project was inspired by **[Yasunori Kirimoto](https://www.linkedin.com/in/y
 
 ## 🌍 Find and Join a Rust Community Nearby! 🦀  
 
-I've been manually searching for **Rust communities** that are **active or have been active**, combining information from:  
+I've been searching for **Rust communities** that are **active or have been active**, combining information from:  
 
 - [Archived Rust Foundation Rust User Groups List](https://prev.rust-lang.org/en-US/user-groups.html)  
 - [Rust Code Maven User Groups](https://rust.code-maven.com/user-groups)  
