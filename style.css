@@ -98,3 +98,13 @@ body {
 .community-link:hover {
     text-decoration: underline; /* Underline only on hover */
 }
+
+.continent-section {
+    margin-bottom: 15px; /* Adds space below each continent section */
+}
+
+.continent-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px; /* Adds space between the continent title and the community names */
+}
