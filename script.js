@@ -52,7 +52,8 @@ const countryFlags = {
     "Singapore": "🇸🇬",
     "South Korea": "🇰🇷",
     "Taiwan": "🇹🇼",
-    "Uzbekistan": "🇺🇿"
+    "Uzbekistan": "🇺🇿",
+    "Vietnam": "🇻🇳"
 };
 
 const continentFlags = {

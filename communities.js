@@ -972,14 +972,23 @@ window.communities = [
         continent: "Europe"
     },
     {
-    name: " Rust - O'zbek Jamiyati ",
-    description: "Rust community in Tashkent.",
-    image: "https://via.placeholder.com/150",
-    link: "https://github.com/rust-lang-uz",
-    coordinates: [69.2401, 41.2995],
-    country: "Uzbekistan",
-    continent: "Asia"
-}          
+        name: " Rust - O'zbek Jamiyati ",
+        description: "Rust community in Tashkent.",
+        image: "https://via.placeholder.com/150",
+        link: "https://github.com/rust-lang-uz",
+        coordinates: [69.2401, 41.2995],
+        country: "Uzbekistan",
+        continent: "Asia"
+    },
+    {
+        name: " RustDEV Vietnam ",
+        description: "Kênh truyền hình  được quản lý bởi RustDEV Vietnam (rustdev.vn) Chúng tôi tạo ra trang tin này với mong muốn thúc đẩy việc sử dụng ngôn ngữ Rust trong cộng đồng lập trình viên, các nhà phát triển giải pháp phần mềm đặc biệt là trong lĩnh vực lập trình nhúng, IoT tại Việt Nam.",
+        image: "https://via.placeholder.com/150",
+        link: "https://www.youtube.com/@rustdev-vn",
+        coordinates: [108.2772, 14.0583],
+        country: "Vietnam",
+        continent: "Asia"
+    }
 ];
 
 window.communities = communities;
