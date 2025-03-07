@@ -1,5 +1,5 @@
-
 # Rust Communities Map 🌍🦀
+![Demo](demo.png)
 This project was inspired by **[Yasunori Kirimoto](https://www.linkedin.com/in/yasunori-kirimoto/)'s AWS Heroes Map**, which beautifully visualizes AWS Heroes around the world. Similarly, I wanted to create a **Rust Communities Map** to help Rustaceans find and connect with local meetups.
 
 ## 🌍 Find and Join a Rust Community Nearby! 🦀  

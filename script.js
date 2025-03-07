@@ -199,8 +199,8 @@ function createMarkerElement(iconUrl) {
     const img = document.createElement('img');
     img.src = iconUrl;
     img.alt = "Ferris Crab Icon";
-    img.style.width = '20px';
-    img.style.height = '16px';
+    img.style.width = '34px';
+    img.style.height = '26px';
     img.style.cursor = 'pointer'; 
     element.appendChild(img);
     return element;
