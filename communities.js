@@ -987,6 +987,15 @@ window.communities = [
         link: "https://www.youtube.com/@rustdev-vn",
         coordinates: [108.2772, 14.0583],
         country: "Vietnam",
+        continent: "Asia",
+    },
+    {
+        name: "Rust Malaysia",
+        description: "Rust Malaysia Group.",
+        image: "https://via.placeholder.com/150",
+        link: "https://rust-malaysia.github.io/meetup/",
+        coordinates: [101.68685500, 3.13900300],
+        country: "Malaysia",
         continent: "Asia"
     }
 ];
